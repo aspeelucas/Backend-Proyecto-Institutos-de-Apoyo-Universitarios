@@ -10,3 +10,10 @@ interface Coordenadas {
   latitud: number;
   longitud: number;
 }
+
+export interface Ipatchplace{
+  nombre?: string;
+  img?: string;
+  coordenadas?: Coordenadas;
+  descripcion?: string;
+}

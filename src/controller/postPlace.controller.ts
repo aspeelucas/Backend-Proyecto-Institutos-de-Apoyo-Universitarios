@@ -1,9 +1,9 @@
-import institutos from "../data/institutos.json";
+
 import { NextFunction, Request, Response } from "express";
 import {addPlace} from "../services/places.services";
 
 
-export async function PostPlacesController(
+export async function PostPlaceController(
   req: Request,
   res: Response,
   next: NextFunction

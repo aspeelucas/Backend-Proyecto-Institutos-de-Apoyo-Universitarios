@@ -1,5 +1,6 @@
+import { get } from "mongoose";
 import GetInstituteDto from "../dtos/GetInstitute.dto";
-import { Iplace } from "../interfaces/IPlaces";
+import { Ipatchplace, Iplace } from "../interfaces/IPlaces";
 import Institutos from "../models/places.model";
 
 export async function getAllPlaces(): Promise<GetInstituteDto[]>{
@@ -24,9 +25,19 @@ export async function deletePlace(id:string){
     return await Institutos.findByIdAndDelete(id);
 }
 
-export async function updatePlace(id:string,place:Iplace){
 
-    
+
+export async function updatePlace(id:string,change:Ipatchplace){
+
+    let place = await Institutos.findById(id);
+    if(!place){
+        return null;
+    }
+    if(change.coordenadas){
+        place.coordenadas = Object.assign({}, place.coordenadas, change.coordenadas);
+        delete change.coordenadas;
+    }
+    place = Object.assign(place, change);
+    return place.save();
 }
-
 

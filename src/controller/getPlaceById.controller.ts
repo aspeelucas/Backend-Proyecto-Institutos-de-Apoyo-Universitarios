@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getPlace } from "../services/places.services";
 
-export async function getPlacesByIdController(req: Request, res: Response) {
+export async function getPlaceByIdController(req: Request, res: Response) {
   const { id } = req.params;
   const place = await getPlace(id);
   if (!place) {
